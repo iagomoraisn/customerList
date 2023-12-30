@@ -10,7 +10,15 @@ class CreateCutsomerService{
         if(!name || !email){
         throw new Error("Preencha todos os campos")
         }
-        return { ok: true }
+
+        const customer = await prismaClient.customer.create({
+            data:{
+                name,
+                email,
+                status: true
+            }
+        })
+        return customer
     }
 }
 
